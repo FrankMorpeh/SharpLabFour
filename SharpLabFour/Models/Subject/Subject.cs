@@ -6,20 +6,16 @@ namespace SharpLabFour.Models.Subjects
     public class Subject : INotifyPropertyChanged
     {
         private string itsName;
-        private double itsCredit;
 
         public string Name { get { return itsName; } set { itsName = value; OnPropertyChanged("Name"); } }
-        public double Credit { get { return itsCredit; } set { itsCredit = value; OnPropertyChanged("Credit"); } }
 
         public Subject()
         {
             itsName = string.Empty;
-            itsCredit = 0.0;
         }
-        public Subject(string name, double credit)
+        public Subject(string name)
         {
             itsName = name;
-            itsCredit = credit;
         }
 
 
