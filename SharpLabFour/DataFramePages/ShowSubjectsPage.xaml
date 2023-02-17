@@ -1,0 +1,36 @@
+﻿<Page x:Class="SharpLabFour.DataFramePages.ShowSubjectsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SharpLabFour.DataFramePages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ShowSubjectsPage">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/InterfaceTemplates/MenuDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Background="Transparent">
+        <ListView Name="subjectsListView" Grid.Row="1" Grid.ColumnSpan="4" MaxHeight="450" MaxWidth="350" BorderBrush="Black" 
+                  BorderThickness="2" Style="{StaticResource ResourceKey=mainListViewStyle}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Focusable" Value="False"/>
+                    <Setter Property="IsHitTestVisible" Value="False"/>
+                    <Setter Property="FontSize" Value="24"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource mainListViewHeaderStyle}">
+                    <GridViewColumn x:Name="subjectNameColumn" DisplayMemberBinding="{Binding Path=Name}" Width="350" Header="Subject"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</Page>
