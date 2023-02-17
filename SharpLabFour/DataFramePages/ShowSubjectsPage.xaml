@@ -17,20 +17,35 @@
     </Page.Resources>
 
     <Grid Background="Transparent">
-        <ListView Name="subjectsListView" Grid.Row="1" Grid.ColumnSpan="4" MaxHeight="450" MaxWidth="350" BorderBrush="Black" 
-                  BorderThickness="2" Style="{StaticResource ResourceKey=mainListViewStyle}">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                    <Setter Property="Focusable" Value="False"/>
-                    <Setter Property="IsHitTestVisible" Value="False"/>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0.3*"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid Name="subjectsDataGrid" Grid.Row="0" Grid.ColumnSpan="4" MaxHeight="300" MaxWidth="350" BorderBrush="Black" 
+                  BorderThickness="2" Style="{StaticResource ResourceKey=mainDataGridStyle}" ItemsSource="{Binding Path=Subjects}"
+                  GridLinesVisibility="None" AutoGenerateColumns="False">
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background" Value="Transparent"/>
                     <Setter Property="FontSize" Value="24"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
                 </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.View>
-                <GridView ColumnHeaderContainerStyle="{StaticResource mainListViewHeaderStyle}">
-                    <GridViewColumn x:Name="subjectNameColumn" DisplayMemberBinding="{Binding Path=Name}" Width="350" Header="Subject"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+            </DataGrid.ItemContainerStyle>
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="FontSize" Value="24"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Path=Name}" Header="SUBJECT" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Grid.Row="1" Content="REMOVE" MaxHeight="50" MaxWidth="200"/>
     </Grid>
 </Page>

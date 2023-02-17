@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using SharpLabFour.DataFramePages;
+using System.Windows;
 
 namespace SharpLabFour
 {
@@ -10,6 +11,7 @@ namespace SharpLabFour
         public MainWindow()
         {
             InitializeComponent();
+            dataFrame.Content = new ShowSubjectsPage();
         }
 
         private void ShowSubjects_Click(object sender, RoutedEventArgs e)

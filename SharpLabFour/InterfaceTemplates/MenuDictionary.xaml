@@ -64,14 +64,14 @@
         <Setter Property="ComboBox.Width" Value="125"/>
     </Style>
 
-    <Style x:Key="mainListViewStyle">
-        <Setter Property="ListView.Background" Value="{StaticResource gradientBackground}"/>
-        <Setter Property="ListView.FontFamily" Value="Open Sans Condensed"/>
-        <Setter Property="ListView.FontSize" Value="24"/>
-        <Setter Property="ListView.Foreground" Value="White"/>
+    <Style x:Key="mainDataGridStyle">
+        <Setter Property="DataGrid.Background" Value="{StaticResource gradientBackground}"/>
+        <Setter Property="DataGrid.FontFamily" Value="Open Sans Condensed"/>
+        <Setter Property="DataGrid.FontSize" Value="24"/>
+        <Setter Property="DataGrid.Foreground" Value="White"/>
     </Style>
 
-    <Style x:Key="mainListViewHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+    <Style x:Key="mainDataGridHeaderStyle" TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontSize" Value="24"/>
