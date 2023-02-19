@@ -11,6 +11,14 @@
         <GradientStop Color="Black" Offset="1"/>
     </LinearGradientBrush>
 
+    <LinearGradientBrush x:Key="notificationGradientBackground">
+        <GradientStop Color="Black" Offset="0"/>
+        <GradientStop Color="DarkRed" Offset="0.25"/>
+        <GradientStop Color="Red" Offset="0.5"/>
+        <GradientStop Color="DarkRed" Offset="0.75"/>
+        <GradientStop Color="Black" Offset="1"/>
+    </LinearGradientBrush>
+
     <Style TargetType="Button">
         <Setter Property="Background" Value="{StaticResource gradientBackground}"/>
         <Setter Property="Foreground" Value="White"/>
@@ -19,6 +27,34 @@
         <Setter Property="MaxHeight" Value="100"/>
         <Setter Property="MaxWidth" Value="250"/>
         <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Name="border" 
+                        BorderThickness="2"
+                        Padding="4,2" 
+                        BorderBrush="Black" 
+                        CornerRadius="3" 
+                        Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="Blue"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="notificationButton">
+        <Setter Property="Button.Background" Value="{StaticResource notificationGradientBackground}"/>
+        <Setter Property="Button.Foreground" Value="White"/>
+        <Setter Property="Button.FontSize" Value="24"/>
+        <Setter Property="Button.FontFamily" Value="Open Sans Condensed"/>
+        <Setter Property="Button.MaxHeight" Value="100"/>
+        <Setter Property="Button.MaxWidth" Value="250"/>
+        <Setter Property="Button.Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Name="border" 

@@ -1,4 +1,6 @@
-﻿using SharpLabFour.ViewModels;
+﻿using SharpLabFour.Models.Subjects;
+using SharpLabFour.Notification;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace SharpLabFour.DataFramePages
@@ -8,10 +10,26 @@ namespace SharpLabFour.DataFramePages
     /// </summary>
     public partial class ShowSubjectsPage : Page
     {
-        public ShowSubjectsPage()
+        private MainWindow itsContent;
+        public ShowSubjectsPage(MainWindow content)
         {
             InitializeComponent();
-            DataContext = new SubjectViewModel();
+            itsContent = content;
+            DataContext = itsContent.subjectViewModel;
+        }
+
+
+        private void Remove_Click(object sender, RoutedEventArgs e)
+        {
+            if (subjectsDataGrid.SelectedIndex == -1)
+                NotificationView.ShowNotification(notificationStackPanel, notificationTextBlock, new RecordNotChosen());
+            else
+                itsContent.subjectViewModel.RemoveSubject((Subject)subjectsDataGrid.SelectedItem);
+        }
+
+        private void OkButton_Click(object sender, RoutedEventArgs e)
+        {
+            NotificationView.HideNotification(notificationStackPanel);
         }
     }
 }

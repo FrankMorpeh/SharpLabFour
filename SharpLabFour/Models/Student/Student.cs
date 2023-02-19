@@ -21,20 +21,28 @@ namespace SharpLabFour.Models.Students
             get { return itsLastName; }
             set { itsLastName = value; OnPropertyChanged("LastName"); }
         }
+        public Dictionary<Subject, double> SubjectsAndGrades { get { return itsSubjectsAndGrades; } }
 
-        public Student()
-        {
-            itsFirstName = string.Empty;
-            itsLastName = string.Empty;
-        }
+        public Student() : this(string.Empty, string.Empty, null) {}
         public Student(string firstName, string lastName)
         {
             itsFirstName = firstName;
             itsLastName = lastName;
+            itsSubjectsAndGrades = new Dictionary<Subject, double>();
+        }
+        public Student(string firstName, string lastName, Dictionary<Subject, double> subjectsAndGrades)
+        {
+            itsFirstName = firstName;
+            itsLastName = lastName;
+            itsSubjectsAndGrades = subjectsAndGrades;
         }
         public void AddSubjectAndGrade(Subject subject, double grade)
         {
             itsSubjectsAndGrades.Add(subject, grade);
+        }
+        public void RemoveSubject(Subject subject)
+        {
+            itsSubjectsAndGrades.Remove(subject);
         }
 
 
