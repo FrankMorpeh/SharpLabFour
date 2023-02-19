@@ -11,6 +11,10 @@ namespace SharpLabFour.ViewModels
         private event Action<Subject> itsSubjectRemovedEvent;
         public ObservableCollection<Subject> Subjects { get; set; }
 
+        public SubjectViewModel(ObservableCollection<Subject> subjects)
+        {
+            Subjects = subjects;
+        }
         public SubjectViewModel(StudentViewModel studentViewModel)
         {
             itsSubjectRemovedEvent += studentViewModel.RemoveSubjectFromAllStudents;

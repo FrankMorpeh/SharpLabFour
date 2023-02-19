@@ -112,4 +112,8 @@
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontSize" Value="24"/>
     </Style>
+
+    <Style TargetType="GridSplitter">
+        <Setter Property="Background" Value="Transparent"/>
+    </Style>
 </ResourceDictionary>

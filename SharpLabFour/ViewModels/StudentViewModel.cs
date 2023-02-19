@@ -25,8 +25,11 @@ namespace SharpLabFour.ViewModels
         }
         public void RemoveSubjectFromAllStudents(Subject subject) // is called when a subject is removed in SubjectViewModel
         {
-            foreach (Student student in Students.Where(st => st.SubjectsAndGrades.ContainsKey(subject)))
-                student.RemoveSubject(subject);
+            foreach (Student student in Students)
+            {
+                if (student.SubjectsAndGrades.Where(sg => sg.Subject == subject).FirstOrDefault() != null)
+                    student.RemoveSubject(subject);
+            }
         }
 
 

@@ -1,6 +1,8 @@
 ﻿using SharpLabFour.Models.Subjects;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 
 namespace SharpLabFour.Models.Students
@@ -9,7 +11,7 @@ namespace SharpLabFour.Models.Students
     {
         private string itsFirstName;
         private string itsLastName;
-        private Dictionary<Subject, double> itsSubjectsAndGrades;
+        private ObservableCollection<SubjectOfStudent> itsSubjectsAndGrades;
 
         public string FirstName
         {
@@ -21,28 +23,37 @@ namespace SharpLabFour.Models.Students
             get { return itsLastName; }
             set { itsLastName = value; OnPropertyChanged("LastName"); }
         }
-        public Dictionary<Subject, double> SubjectsAndGrades { get { return itsSubjectsAndGrades; } }
+        public ObservableCollection<SubjectOfStudent> SubjectsAndGrades { get { return itsSubjectsAndGrades; } }
 
         public Student() : this(string.Empty, string.Empty, null) {}
         public Student(string firstName, string lastName)
         {
             itsFirstName = firstName;
             itsLastName = lastName;
-            itsSubjectsAndGrades = new Dictionary<Subject, double>();
+            itsSubjectsAndGrades = new ObservableCollection<SubjectOfStudent>();
         }
-        public Student(string firstName, string lastName, Dictionary<Subject, double> subjectsAndGrades)
+        public Student(string firstName, string lastName, ObservableCollection<SubjectOfStudent> subjectsAndGrades)
         {
             itsFirstName = firstName;
             itsLastName = lastName;
             itsSubjectsAndGrades = subjectsAndGrades;
         }
-        public void AddSubjectAndGrade(Subject subject, double grade)
+        public void AddSubject(Subject subject)
         {
-            itsSubjectsAndGrades.Add(subject, grade);
+            itsSubjectsAndGrades.Add(new SubjectOfStudent(subject));
         }
-        public void RemoveSubject(Subject subject)
+        public void AddSubjectRange(List<Subject> subjects)
         {
-            itsSubjectsAndGrades.Remove(subject);
+            foreach (Subject subject in subjects)
+                itsSubjectsAndGrades.Add(new SubjectOfStudent(subject));
+        }
+        public void RemoveSubject(SubjectOfStudent subjectOfStudent)
+        {
+            itsSubjectsAndGrades.Remove(subjectOfStudent);
+        }
+        public void RemoveSubject(Subject subject) // called from StudentViewModel when an initial subject is deleted
+        {
+            itsSubjectsAndGrades.Remove(itsSubjectsAndGrades.Where(sg => sg.Subject == subject).FirstOrDefault());
         }
 
 
