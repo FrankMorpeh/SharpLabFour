@@ -38,6 +38,10 @@ namespace SharpLabFour
             // End of test zone
         }
 
+        private void AddSubject_Click(object sender, RoutedEventArgs e)
+        {
+            dataFrame.Content = new AddSubjectPage(this);
+        }
         private void ShowSubjects_Click(object sender, RoutedEventArgs e)
         {
             dataFrame.Content = new ShowSubjectsPage(this, new ShowInitialSubjectsStrategy(), subjectViewModel);

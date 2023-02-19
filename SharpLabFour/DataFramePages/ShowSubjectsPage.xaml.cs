@@ -48,7 +48,7 @@ namespace SharpLabFour.DataFramePages
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            NotificationView.HideNotification(notificationStackPanel);
+            NotificationView.HideNotifications(notificationStackPanel);
         }
     }
 }
