@@ -33,12 +33,17 @@ namespace SharpLabFour
             subjectsAndGrades = new System.Collections.Generic.Dictionary<Models.Subjects.Subject, double>();
             subjectsAndGrades.Add(subjectViewModel.Subjects[0], 100);
             subjectsAndGrades.Add(subjectViewModel.Subjects[2], 90);
+            studentViewModel.AddStudent(new Models.Students.Student("Vlad", "Bakhmatskyi", subjectsAndGrades));
             // End of test zone
         }
 
         private void ShowSubjects_Click(object sender, RoutedEventArgs e)
         {
             dataFrame.Content = new ShowSubjectsPage(this);
+        }
+        private void ShowStudents_Click(object sender, RoutedEventArgs e)
+        {
+            dataFrame.Content = new ShowStudentsPage(this);
         }
     }
 }
