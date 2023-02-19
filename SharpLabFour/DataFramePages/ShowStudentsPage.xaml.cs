@@ -19,6 +19,10 @@ namespace SharpLabFour.DataFramePages
             DataContext = itsContent.studentViewModel;
         }
 
+        private void SortByLastName_Click(object sender, RoutedEventArgs e)
+        {
+            itsContent.studentViewModel.SortByLastName(studentsDataGrid);
+        }
         private void ShowSubjects_Click(object sender, RoutedEventArgs e)
         {
             if (studentsDataGrid.SelectedIndex == -1)

@@ -48,9 +48,11 @@
         </DataGrid>
 
         <StackPanel Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Center" Orientation="Horizontal">
-            <Button Content="SHOW SUBJECTS" MaxHeight="50" VerticalAlignment="Top" Width="175" Click="ShowSubjects_Click"/>
-            <GridSplitter Width="25"/>
-            <Button Content="REMOVE" MaxHeight="50" VerticalAlignment="Top" Width="125" Click="Remove_Click"/>
+            <Button Content="SORT BY LAST NAME" MaxHeight="50" VerticalAlignment="Top" Width="200" Click="SortByLastName_Click"/>
+            <GridSplitter Width="10"/>
+            <Button Content="SHOW SUBJECTS" MaxHeight="50" VerticalAlignment="Top" Width="165" Click="ShowSubjects_Click"/>
+            <GridSplitter Width="10"/>
+            <Button Content="REMOVE" MaxHeight="50" VerticalAlignment="Top" Width="110" Click="Remove_Click"/>
         </StackPanel>
 
 

@@ -1,35 +1,49 @@
 ﻿using SharpLabFour.Models.Students;
 using SharpLabFour.Models.Subjects;
+using SharpLabFour.States.StudentViewModelSortingStates;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using System.Windows.Controls;
 
 namespace SharpLabFour.ViewModels
 {
     public class StudentViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<Student> Students { get; set; }
+        private ObservableCollection<Student> itsStudents;
+        private IStudentViewModelSortingState itsStudentViewModelSortingState;
+
+        public ObservableCollection<Student> Students { get { return itsStudents; } set { itsStudents = value; } }
         
         public StudentViewModel()
         {
-            Students = new ObservableCollection<Student>();
+            itsStudents = new ObservableCollection<Student>();
+            itsStudentViewModelSortingState = new StudentViewModelNotSortedByLastNameState();
         }
         public void AddStudent(Student student)
         {
-            Students.Add(student);
+            itsStudents.Add(student);
         }
         public void RemoveStudent(Student student)
         {
-            Students.Remove(student);
+            itsStudents.Remove(student);
         }
         public void RemoveSubjectFromAllStudents(Subject subject) // is called when a subject is removed in SubjectViewModel
         {
-            foreach (Student student in Students)
+            foreach (Student student in itsStudents)
             {
                 if (student.SubjectsAndGrades.Where(sg => sg.Subject == subject).FirstOrDefault() != null)
                     student.RemoveSubject(subject);
             }
+        }
+        
+
+        // Sorting
+        public void SortByLastName(DataGrid studentsDataGrid)
+        {
+            itsStudentViewModelSortingState.SortByLastName(ref itsStudents, ref itsStudentViewModelSortingState);
+            studentsDataGrid.ItemsSource = itsStudents;
         }
 
 

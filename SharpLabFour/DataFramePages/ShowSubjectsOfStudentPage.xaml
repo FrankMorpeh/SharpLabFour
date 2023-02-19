@@ -42,7 +42,7 @@
                 </Style>
             </DataGrid.ColumnHeaderStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Path=Subject.Name}" Header="SUBJECT" Width="*"/>
+                <DataGridTextColumn Binding="{Binding Path=Subject.Name}" Header="SUBJECT" Width="*" IsReadOnly="True"/>
                 <DataGridTextColumn Binding="{Binding Path=Grade}" Header="GRADE" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>
