@@ -10,7 +10,7 @@ namespace SharpLabFour.Validators
             if (name != string.Empty && name.Any(s => char.IsLetterOrDigit(s)))
                 return new None();
             else
-                return new IncorrectName();
+                return new EmptySubjectName();
         }
     }
 }

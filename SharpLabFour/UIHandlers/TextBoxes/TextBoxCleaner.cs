@@ -9,7 +9,7 @@ namespace SharpLabFour.UIHandlers.TextBoxes
         {
             textBox.Text = string.Empty;
         }
-        public static void CleanTextBoxes(List<TextBox> textBoxes)
+        public static void CleanTextBoxes(params TextBox[] textBoxes)
         {
             foreach (TextBox textBox in textBoxes)
                 textBox.Text = string.Empty;

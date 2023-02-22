@@ -25,7 +25,7 @@ namespace SharpLabFour.Models.Students
         }
         public ObservableCollection<SubjectOfStudent> SubjectsAndGrades { get { return itsSubjectsAndGrades; } }
 
-        public Student() : this(string.Empty, string.Empty, null) {}
+        public Student() : this(string.Empty, string.Empty, new ObservableCollection<SubjectOfStudent>()) {}
         public Student(string firstName, string lastName)
         {
             itsFirstName = firstName;

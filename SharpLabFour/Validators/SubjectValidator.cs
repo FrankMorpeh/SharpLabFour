@@ -10,7 +10,7 @@ namespace SharpLabFour.Validators
         {
             List<INotification> notifications = new List<INotification>();
             if (NameValidator.CheckName(subjectName) is not None)
-                notifications.Add(new IncorrectName());
+                notifications.Add(new EmptySubjectName());
             if (SuchSubjectExists(subjectName, subjects))
                 notifications.Add(new SuchSubjectExists());
             return notifications;

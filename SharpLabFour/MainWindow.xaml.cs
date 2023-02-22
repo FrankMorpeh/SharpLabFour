@@ -46,6 +46,10 @@ namespace SharpLabFour
         {
             dataFrame.Content = new ShowSubjectsPage(this, new ShowInitialSubjectsStrategy(), subjectViewModel);
         }
+        private void AddStudent_Click(object sender, RoutedEventArgs e)
+        {
+            dataFrame.Content = new AddStudentPage(this);
+        }
         private void ShowStudents_Click(object sender, RoutedEventArgs e)
         {
             dataFrame.Content = new ShowStudentsPage(this);

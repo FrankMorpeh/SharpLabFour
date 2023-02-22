@@ -7,17 +7,29 @@ namespace SharpLabFour.Notification
 
         public RecordNotChosen() { Text = "RECORD HASN'T BEEN CHOSEN!"; }
     }
-    public class IncorrectName : INotification
+    public class EmptySubjectName : INotification
     {
         public string Text { get; set; }
 
-        public IncorrectName() { Text = "INCORRECT NAME!"; }
+        public EmptySubjectName() { Text = "SUBJECT'S NAME IS EMPTY!"; }
     }
     public class SuchSubjectExists : INotification
     {
         public string Text { get; set; }
 
         public SuchSubjectExists() { Text = "SUCH SUBJECT ALREADY EXISTS!"; }
+    }
+    public class EmptyStudentFirstName : INotification
+    {
+        public string Text { get; set; }
+
+        public EmptyStudentFirstName() { Text = "STUDENT'S FIRST NAME IS EMPTY!"; }
+    }
+    public class EmptyStudentLastName : INotification
+    {
+        public string Text { get; set; }
+
+        public EmptyStudentLastName() { Text = "STUDENT'S LAST NAME IS EMPTY!"; }
     }
     public class None : INotification
     {
