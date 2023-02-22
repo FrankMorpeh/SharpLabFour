@@ -116,4 +116,18 @@
         <Setter Property="TextBox.VerticalContentAlignment" Value="Center"/>
         <Setter Property="TextBox.CaretBrush" Value="White"/>
     </Style>
+
+    <Style TargetType="ListView">
+        <Setter Property="Background" Value="{StaticResource gradientBackground}"/>
+        <Setter Property="FontFamily" Value="Open Sans Condensed"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+        <Setter Property="BorderThickness" Value="2"/>
+    </Style>
+
+    <Style x:Key="listHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="24"/>
+    </Style>
 </ResourceDictionary>

@@ -1,6 +1,8 @@
 ﻿using SharpLabFour.Models.Students;
 using SharpLabFour.Models.Subjects;
 using SharpLabFour.States.StudentViewModelSortingStates;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -36,6 +38,16 @@ namespace SharpLabFour.ViewModels
                 if (student.SubjectsAndGrades.Where(sg => sg.Subject == subject).FirstOrDefault() != null)
                     student.RemoveSubject(subject);
             }
+        }
+        public List<Tuple<Student, SubjectOfStudent>> GetStudentsBySubjectName(string subjectName)
+        {
+            List<Student> students = 
+                itsStudents.Where(st => st.SubjectsAndGrades.ToList().Exists(sg => sg.Subject.Name == subjectName)).ToList();
+            List<Tuple<Student, SubjectOfStudent>> studentsAndChosenSubject = new List<Tuple<Student, SubjectOfStudent>>();
+            foreach (Student student in students)
+                studentsAndChosenSubject.Add(new Tuple<Student, SubjectOfStudent>(student
+                    , student.SubjectsAndGrades.Where(sg => sg.Subject.Name == subjectName).FirstOrDefault()));
+            return studentsAndChosenSubject;
         }
         
 

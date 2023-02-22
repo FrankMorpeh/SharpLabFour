@@ -54,5 +54,9 @@ namespace SharpLabFour
         {
             dataFrame.Content = new ShowStudentsPage(this);
         }
+        private void StudentsBySubject_Click(object sender, RoutedEventArgs e)
+        {
+            dataFrame.Content = new ShowStudentsBySubjectPage(this);
+        }
     }
 }

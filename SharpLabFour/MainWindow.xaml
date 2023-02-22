@@ -40,7 +40,7 @@
         <Button Grid.Row="2" Grid.Column="1" Content="SHOW SUBJECTS" Click="ShowSubjects_Click"/>
         <Button Grid.Row="3" Grid.Column="1" Content="ADD STUDENT" Click="AddStudent_Click"/>
         <Button Grid.Row="4" Grid.Column="1" Content="SHOW STUDENTS" Click="ShowStudents_Click"/>
-        <Button Grid.Row="5" Grid.Column="1" Content="STUDENTS BY SUBJECT"/>
+        <Button Grid.Row="5" Grid.Column="1" Content="STUDENTS BY SUBJECT" Click="StudentsBySubject_Click"/>
 
 
         <Frame x:Name="dataFrame" NavigationUIVisibility="Hidden" Grid.Row="1" Grid.RowSpan="5" Grid.Column="3"/>
