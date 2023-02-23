@@ -23,7 +23,8 @@ namespace SharpLabFour.Models.Students
             get { return itsLastName; }
             set { itsLastName = value; OnPropertyChanged("LastName"); }
         }
-        public ObservableCollection<SubjectOfStudent> SubjectsAndGrades { get { return itsSubjectsAndGrades; } }
+        public ObservableCollection<SubjectOfStudent> SubjectsAndGrades { get { return itsSubjectsAndGrades; } 
+            set { itsSubjectsAndGrades = value; } }
 
         public Student() : this(string.Empty, string.Empty, new ObservableCollection<SubjectOfStudent>()) {}
         public Student(string firstName, string lastName)

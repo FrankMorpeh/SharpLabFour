@@ -1,6 +1,9 @@
 ﻿using SharpLabFour.DataFramePages;
+using SharpLabFour.Directories;
+using SharpLabFour.Memento;
 using SharpLabFour.Strategies.ShowSubjectsPageViewStrategies;
 using SharpLabFour.ViewModels;
+using System;
 using System.Windows;
 
 namespace SharpLabFour
@@ -10,6 +13,15 @@ namespace SharpLabFour
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static string initialLocation;
+        static MainWindow()
+        {
+            initialLocation = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            initialLocation = System.IO.Path.GetDirectoryName(initialLocation);
+
+            DirectoryChecker.CreateDeletedDirectories();
+        }
+
         public StudentViewModel studentViewModel;
         public SubjectViewModel subjectViewModel;
         public MainWindow()
@@ -18,24 +30,10 @@ namespace SharpLabFour
 
             studentViewModel = new StudentViewModel();
             subjectViewModel = new SubjectViewModel(studentViewModel);
-
-            // Test zone
-            studentViewModel.AddStudent(new Models.Students.Student("Bogdan", "Bakhmatskyi"
-                , new System.Collections.ObjectModel.ObservableCollection<Models.Students.SubjectOfStudent> { 
-                    new Models.Students.SubjectOfStudent(subjectViewModel.Subjects[1], 93.8)
-                    , new Models.Students.SubjectOfStudent(subjectViewModel.Subjects[2], 97) }));
-
-            studentViewModel.AddStudent(new Models.Students.Student("Artem", "Legenya"
-                , new System.Collections.ObjectModel.ObservableCollection<Models.Students.SubjectOfStudent> { 
-                new Models.Students.SubjectOfStudent(subjectViewModel.Subjects[0], 68.1)
-                , new Models.Students.SubjectOfStudent(subjectViewModel.Subjects[1], 73)
-                , new Models.Students.SubjectOfStudent(subjectViewModel.Subjects[2], 70)}));
-
-            studentViewModel.AddStudent(new Models.Students.Student("Vlad", "Bakhmatskyi"
-                , new System.Collections.ObjectModel.ObservableCollection<Models.Students.SubjectOfStudent> { 
-                new Models.Students.SubjectOfStudent(subjectViewModel.Subjects[0], 97.5)
-                , new Models.Students.SubjectOfStudent(subjectViewModel.Subjects[2], 90.6)}));
-            // End of test zone
+        }
+        private void MainWindow_Loaded(object sender, EventArgs e)
+        {
+            UniversityMementoCreator.LoadSave(this);
         }
 
         private void AddSubject_Click(object sender, RoutedEventArgs e)
@@ -57,6 +55,11 @@ namespace SharpLabFour
         private void StudentsBySubject_Click(object sender, RoutedEventArgs e)
         {
             dataFrame.Content = new ShowStudentsBySubjectPage(this);
+        }
+
+        private void MainWindow_Closing(object sender, EventArgs e)
+        {
+            UniversityMementoCreator.CreateSave(this);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using SharpLabFour.Models.Students;
+﻿using SharpLabFour.Memento;
+using SharpLabFour.Models.Students;
 using SharpLabFour.Models.Subjects;
 using SharpLabFour.States.StudentViewModelSortingStates;
 using System;
@@ -56,6 +57,32 @@ namespace SharpLabFour.ViewModels
         {
             itsStudentViewModelSortingState.SortByLastName(ref itsStudents, ref itsStudentViewModelSortingState);
             studentsDataGrid.ItemsSource = itsStudents;
+        }
+
+
+        // Memento
+        public StudentViewModelMemento SaveState()
+        {
+            return new StudentViewModelMemento(itsStudents);
+        }
+        public void LoadState(StudentViewModelMemento studentViewModelMemento, SubjectViewModelMemento subjectViewModelMemento)
+        {
+            /*
+                SubjectViewModelMemento is needed so as to bind student's subjects with the same objects in memory,
+                as after serialization subjects of students and actual subjects are different
+            */
+            foreach (Student student in studentViewModelMemento.Students)
+            {
+                itsStudents.Add(new Student(student.FirstName, student.LastName));
+                foreach (Subject subject in subjectViewModelMemento.Subjects)
+                {
+                    if (student.SubjectsAndGrades.ToList().Exists(sg => sg.Subject.Name == subject.Name))
+                    {
+                        itsStudents[itsStudents.Count - 1].SubjectsAndGrades.Add(new SubjectOfStudent(subject
+                            , student.SubjectsAndGrades.Where(sg => sg.Subject.Name == subject.Name).FirstOrDefault().Grade));
+                    }
+                }
+            }
         }
 
 

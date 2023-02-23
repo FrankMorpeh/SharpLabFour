@@ -9,7 +9,7 @@ namespace SharpLabFour.Models.Students
         private Subject itsSubject;
         private double itsGrade;
 
-        public Subject Subject { get { return itsSubject; } } // subject can't be edited, it can only be added or removed
+        public Subject Subject { get { return itsSubject; } set { itsSubject = value; } } // subject can't be edited, it can only be added or removed
         public double Grade { get { return itsGrade; } set { itsGrade = value; OnPropertyChanged("Grade"); } }
 
         public SubjectOfStudent()

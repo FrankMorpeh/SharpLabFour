@@ -1,4 +1,5 @@
-﻿using SharpLabFour.Models.Subjects;
+﻿using SharpLabFour.Memento;
+using SharpLabFour.Models.Subjects;
 using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -18,7 +19,6 @@ namespace SharpLabFour.ViewModels
         public SubjectViewModel(StudentViewModel studentViewModel)
         {
             itsSubjectRemovedEvent += studentViewModel.RemoveSubjectFromAllStudents;
-            Subjects = new ObservableCollection<Subject>() { new Subject("Maths"), new Subject("Programming"), new Subject("English") };
         }
         public void AddSubject(Subject subject)
         {
@@ -28,6 +28,17 @@ namespace SharpLabFour.ViewModels
         {
             Subjects.Remove(subject);
             itsSubjectRemovedEvent(subject);
+        }
+
+
+        // Memento
+        public SubjectViewModelMemento SaveState()
+        {
+            return new SubjectViewModelMemento(Subjects);
+        }
+        public void LoadState(SubjectViewModelMemento subjectViewModelMemento)
+        {
+            Subjects = subjectViewModelMemento.Subjects;
         }
 
 
